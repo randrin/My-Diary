@@ -1,4 +1,4 @@
-This project was created By [Create React App](https://randrin-nzeukang.netlify.app/).
+This project was created By [Randrin Nzeukang](https://randrin-nzeukang.netlify.app/).
 
 ## Set up Environement
 
@@ -6,7 +6,7 @@ To get in touch with this project, you can:
 
 ### `clone the project`
 
-Go to the repository and click to clon button
+Go to the repository and click to clone button
 
 ### `npm install`
 
