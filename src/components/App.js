@@ -2,7 +2,7 @@ import React, { PureComponent } from "react";
 import "../styles/diary.scss";
 import _ from "lodash";
 import { connect } from "react-redux";
-import { getNotes, saveNote } from "../actions/notesAction";
+import { getNotes, saveNote, deleteNote } from "../actions/notesAction";
 
 class App extends PureComponent {
   constructor(props) {
@@ -54,6 +54,12 @@ class App extends PureComponent {
         <div key={key}>
           <h2>{note.title}</h2>
           <p>{note.body}</p>
+          <button
+            className="btn btn-danger"
+            onClick={() => this.props.deleteNote(key)}
+          >
+            Delete
+          </button>
         </div>
       );
     });
@@ -114,4 +120,6 @@ function mapStateToProps(state, ownProps) {
   };
 }
 
-export default connect(mapStateToProps, { getNotes, saveNote })(App);
+export default connect(mapStateToProps, { getNotes, saveNote, deleteNote })(
+  App
+);
