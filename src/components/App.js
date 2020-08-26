@@ -1,6 +1,7 @@
 import React, { PureComponent } from "react";
 import "../styles/diary.scss";
 import { database } from "../firebase";
+import _ from "lodash";
 
 class App extends PureComponent {
   constructor(props) {
@@ -9,10 +10,12 @@ class App extends PureComponent {
     this.state = {
       title: "",
       body: "",
+      notes: {},
     };
 
     this.handleChange = this.handleChange.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
+    this.renderNotes = this.renderNotes.bind(this);
   }
 
   handleChange(e) {
@@ -39,13 +42,23 @@ class App extends PureComponent {
     });
   }
 
-  verifiedRequiedField() {
-    const { title, body } = this.state;
-    if (title && body) {
-      return true;
-    } else {
-      return false;
-    }
+  // Life Cycle
+  componentDidMount() {
+    database.on("value", (snapshot) => {
+      this.setState({ notes: snapshot.val() });
+    });
+  }
+
+  // Render notes
+  renderNotes() {
+    return _.map(this.state.notes, (note, key) => {
+      return (
+        <div key={key}>
+          <h2>{note.title}</h2>
+          <p>{note.body}</p>
+        </div>
+      );
+    });
   }
 
   render() {
@@ -57,6 +70,7 @@ class App extends PureComponent {
           <div className="row text-center">
             <div className="col">
               <h2 className="text-danger font-weight-bold">My Diary</h2>
+              {this.renderNotes()}
               <form onSubmit={this.handleSubmit}>
                 <div className="form-group">
                   <input
