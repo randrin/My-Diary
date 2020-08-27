@@ -3,6 +3,7 @@ import "../styles/diary.scss";
 import _ from "lodash";
 import { connect } from "react-redux";
 import { getNotes, saveNote, deleteNote } from "../actions/notesAction";
+import NoteCard from "./NoteCard";
 
 class App extends PureComponent {
   constructor(props) {
@@ -51,7 +52,7 @@ class App extends PureComponent {
   renderNotes() {
     return _.map(this.props.notes, (note, key) => {
       return (
-        <div key={key}>
+        <NoteCard key={key}>
           <h2>{note.title}</h2>
           <p>{note.body}</p>
           <button
@@ -60,7 +61,7 @@ class App extends PureComponent {
           >
             Delete
           </button>
-        </div>
+        </NoteCard>
       );
     });
   }
