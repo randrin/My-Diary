@@ -3,6 +3,7 @@ import "../styles/diary.scss";
 import _ from "lodash";
 import { connect } from "react-redux";
 import { getNotes, saveNote, deleteNote } from "../actions/notesAction";
+import { getUser } from "../actions/userActions";
 import NoteCard from "./NoteCard";
 
 class App extends PureComponent {
@@ -46,6 +47,7 @@ class App extends PureComponent {
   // Life Cycle
   componentDidMount() {
     this.props.getNotes();
+    this.props.getUser();
   }
 
   // Render notes
@@ -118,9 +120,13 @@ class App extends PureComponent {
 function mapStateToProps(state, ownProps) {
   return {
     notes: state.notes,
+    user: state.user,
   };
 }
 
-export default connect(mapStateToProps, { getNotes, saveNote, deleteNote })(
-  App
-);
+export default connect(mapStateToProps, {
+  getNotes,
+  saveNote,
+  deleteNote,
+  getUser,
+})(App);
