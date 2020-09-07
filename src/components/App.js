@@ -45,10 +45,10 @@ class App extends PureComponent {
   }
 
   // Life Cycle
-  componentDidMount() {
-    this.props.getNotes();
-    this.props.getUser();
-  }
+  // componentDidMount() {
+  //   this.props.getNotes();
+  //   this.props.getUser();
+  // }
 
   // Render notes
   renderNotes() {

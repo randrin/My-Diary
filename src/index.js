@@ -9,7 +9,9 @@ import rootReducer from "./reducers";
 import thunk from "redux-thunk";
 import { BrowserRouter, Switch, Route } from "react-router-dom";
 import Login from "./components/Login";
-import Header from "./components/Header"
+import Header from "./components/Header";
+import Loading from "./components/Loading";
+import Authentification from "./components/Authentification";
 
 // Create Redux Store
 const store = createStore(
@@ -22,13 +24,17 @@ ReactDOM.render(
   <React.StrictMode>
     <Provider store={store}>
       <BrowserRouter>
-        <div>
-          <Header />
-          <Switch>
-            <Route path="/" component={App} exact={true} />
-            <Route path="/login" component={Login} exact={true} />
-          </Switch>
-        </div>
+        <Loading>
+          <div>
+            <Header />
+            <Switch>
+              <Route path="/login" component={Login} exact={true} />
+              <Authentification>
+                <Route path="/" component={App} exact={true} />
+              </Authentification>
+            </Switch>
+          </div>
+        </Loading>
       </BrowserRouter>
     </Provider>
   </React.StrictMode>,
