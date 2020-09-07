@@ -26,10 +26,10 @@ ReactDOM.render(
       <BrowserRouter>
         <Loading>
           <div>
-            <Header />
             <Switch>
               <Route path="/login" component={Login} exact={true} />
               <Authentification>
+                <Header />
                 <Route path="/" component={App} exact={true} />
               </Authentification>
             </Switch>
