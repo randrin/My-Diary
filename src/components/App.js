@@ -32,6 +32,7 @@ class App extends PureComponent {
     const note = {
       title: title,
       body: body,
+      uid: this.props.user.uid,
     };
     this.props.saveNote(note);
     this.resetForm();
@@ -57,12 +58,14 @@ class App extends PureComponent {
         <NoteCard key={key}>
           <h2>{note.title}</h2>
           <p>{note.body}</p>
-          <button
-            className="btn btn-danger"
-            onClick={() => this.props.deleteNote(key)}
-          >
-            Delete
-          </button>
+          {note.uid === this.props.user.uid && (
+            <button
+              className="btn btn-danger"
+              onClick={() => this.props.deleteNote(key)}
+            >
+              Delete
+            </button>
+          )}
         </NoteCard>
       );
     });
