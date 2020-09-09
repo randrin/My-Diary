@@ -12,6 +12,7 @@ import Login from "./components/Login";
 import Header from "./components/Header";
 import Loading from "./components/Loading";
 import Authentification from "./components/Authentification";
+import NoteDetails from "./components/NoteDetails";
 
 // Create Redux Store
 const store = createStore(
@@ -30,6 +31,7 @@ ReactDOM.render(
               <Route path="/login" component={Login} exact={true} />
               <Authentification>
                 <Header />
+                <Route path="/:id" component={NoteDetails} exact={true} />
                 <Route path="/" component={App} exact={true} />
               </Authentification>
             </Switch>

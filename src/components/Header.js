@@ -21,7 +21,7 @@ class Header extends Component {
             </button>
 
             <Link className="navbar-brand" to="/">
-              My Diary
+              My Diary {new Date().getFullYear()}
             </Link>
           </div>
 

@@ -1,4 +1,5 @@
 import React, { PureComponent } from "react";
+import { Link } from "react-router-dom";
 import "../styles/diary.scss";
 import _ from "lodash";
 import { connect } from "react-redux";
@@ -56,7 +57,9 @@ class App extends PureComponent {
     return _.map(this.props.notes, (note, key) => {
       return (
         <NoteCard key={key}>
-          <h2>{note.title}</h2>
+          <Link to={`/${key}`}>
+            <h2>{note.title}</h2>
+          </Link>
           <p>{note.body}</p>
           {note.uid === this.props.user.uid && (
             <button
