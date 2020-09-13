@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import { Link } from "react-router-dom";
 import { connect } from "react-redux";
+import CommentNote from "./CommentNote";
 
 class NoteDetails extends Component {
   render() {
@@ -15,6 +16,11 @@ class NoteDetails extends Component {
           <div className="col">
             <h1 className="text-danger">{note.title}</h1>
             <div className="diary-noteDetails-body">{note.body}</div>
+          </div>
+        </div>
+        <div className="row">
+          <div className="col">
+            <CommentNote />
           </div>
         </div>
       </div>
