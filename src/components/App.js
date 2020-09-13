@@ -5,7 +5,7 @@ import _ from "lodash";
 import { connect } from "react-redux";
 import { getNotes, saveNote, deleteNote } from "../actions/notesAction";
 import { getUser } from "../actions/userActions";
-import NoteCard from "./NoteCard";
+import NoteCard from "./notes/NoteCard";
 
 class App extends PureComponent {
   constructor(props) {

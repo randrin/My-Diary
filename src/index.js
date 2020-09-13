@@ -12,7 +12,7 @@ import Login from "./components/Login";
 import Header from "./components/Header";
 import Loading from "./components/Loading";
 import Authentification from "./components/Authentification";
-import NoteDetails from "./components/NoteDetails";
+import NoteDetails from "./components/notes/NoteDetails";
 
 // Create Redux Store
 const store = createStore(

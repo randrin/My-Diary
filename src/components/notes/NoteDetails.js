@@ -1,9 +1,22 @@
 import React, { Component } from "react";
 import { Link } from "react-router-dom";
 import { connect } from "react-redux";
-import CommentNote from "./CommentNote";
+import CommentNote from "../comments/CommentNote";
+import Comment from "../comments/Comment";
+import _ from "lodash";
 
 class NoteDetails extends Component {
+  renderComment() {
+    const { note } = this.props;
+    return _.map(note.comments, (comment, key) => {
+      return (
+        <Comment key={key} id={key}>
+          {comment.commentBody}
+        </Comment>
+      );
+    });
+  }
+
   render() {
     const { note } = this.props;
     return (
@@ -20,8 +33,11 @@ class NoteDetails extends Component {
         </div>
         <div className="row">
           <div className="col">
-            <CommentNote />
+            <CommentNote id={this.props.match.params.id} />
           </div>
+        </div>
+        <div className="row">
+          <div className="col">{this.renderComment()}</div>
         </div>
       </div>
     );

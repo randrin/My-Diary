@@ -1,15 +1,17 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
+import { saveComment } from "../../actions/commentsAction";
 
 class CommentNote extends Component {
   constructor(props) {
     super(props);
 
     this.state = {
-      comment: "",
+      commentBody: "",
     };
 
     this.handleChange = this.handleChange.bind(this);
+    this.handleSubmit = this.handleSubmit.bind(this);
   }
 
   handleChange(e) {
@@ -18,19 +20,36 @@ class CommentNote extends Component {
     });
   }
 
+  handleSubmit(e) {
+    e.preventDefault();
+    const { commentBody } = this.state;
+    const comment = {
+      commentBody: commentBody,
+      uid: this.props.user,
+    };
+    this.props.saveComment(this.props.id, comment);
+    this.resetForm();
+  }
+
+  resetForm() {
+    this.setState({
+      commentBody: "",
+    });
+  }
+
   render() {
-    const { comment } = this.state;
-    const isEnabled = comment.length > 0;
+    const { commentBody } = this.state;
+    const isEnabled = commentBody.length > 0;
     return (
       <div className="mt-5">
-        <form>
+        <form onSubmit={this.handleSubmit}>
           <div className="form-group">
             <textarea
               rows="10"
               className="form-control no-border"
               placeholder="Insert the Comment"
-              name="comment"
-              value={comment}
+              name="commentBody"
+              value={commentBody}
               onChange={this.handleChange}
             />
           </div>
@@ -49,10 +68,10 @@ class CommentNote extends Component {
   }
 }
 
-function mapStateToProps(state, ownProp) {
+function mapStateToProps(state, ownProps) {
   return {
-    user: state.user.id,
+    user: state.user.uid,
   };
 }
 
-export default connect(mapStateToProps)(CommentNote);
+export default connect(mapStateToProps, { saveComment })(CommentNote);
