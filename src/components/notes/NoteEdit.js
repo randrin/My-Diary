@@ -1,24 +1,18 @@
-import React, { PureComponent } from "react";
-import { Link } from "react-router-dom";
-import "../styles/diary.scss";
-import _ from "lodash";
+import React, { Component } from "react";
 import { connect } from "react-redux";
-import { getNotes, saveNote, deleteNote } from "../actions/notesAction";
-import { getUser } from "../actions/userActions";
-import NoteCard from "./notes/NoteCard";
+import { editNote } from "../../actions/notesAction";
 
-class App extends PureComponent {
+class NoteEdit extends Component {
   constructor(props) {
     super(props);
 
     this.state = {
-      title: "",
-      body: "",
+      title: this.props.note.title,
+      body: this.props.note.body,
     };
 
     this.handleChange = this.handleChange.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
-    this.renderNotes = this.renderNotes.bind(this);
   }
 
   handleChange(e) {
@@ -33,49 +27,17 @@ class App extends PureComponent {
     const note = {
       title: title,
       body: body,
-      uid: this.props.user.uid,
+      uid: this.props.user,
     };
-    this.props.saveNote(note);
+    this.props.editNote(this.props.match.params.id, note);
     this.resetForm();
+    this.props.history.push("/");
   }
 
   resetForm() {
     this.setState({
       title: "",
       body: "",
-    });
-  }
-
-  // Life Cycle
-  // componentDidMount() {
-  //   this.props.getNotes();
-  //   this.props.getUser();
-  // }
-
-  // Render notes
-  renderNotes() {
-    return _.map(this.props.notes, (note, key) => {
-      return (
-        <NoteCard key={key}>
-          <Link to={`/${key}`}>
-            <h2>{note.title}</h2>
-          </Link>
-          <p>{note.body}</p>
-          {note.uid === this.props.user.uid && (
-            <>
-              <button
-                className="btn btn-danger"
-                onClick={() => this.props.deleteNote(key)}
-              >
-                Delete
-              </button>
-              <button className="btn btn-info">
-                <Link to={`/${key}/edit`}>Update</Link>
-              </button>
-            </>
-          )}
-        </NoteCard>
-      );
     });
   }
 
@@ -87,8 +49,6 @@ class App extends PureComponent {
         <div className="container my-5">
           <div className="row text-center">
             <div className="col">
-              <h2 className="text-danger font-weight-bold">My Diary</h2>
-              {this.renderNotes()}
               <form onSubmit={this.handleSubmit}>
                 <div className="form-group">
                   <input
@@ -116,7 +76,7 @@ class App extends PureComponent {
                     disabled={!isEnabled}
                     className="btn btn-primary float-left"
                   >
-                    Save Note
+                    Update Note
                   </button>
                 </div>
               </form>
@@ -130,14 +90,9 @@ class App extends PureComponent {
 
 function mapStateToProps(state, ownProps) {
   return {
-    notes: state.notes,
-    user: state.user,
+    note: state.notes[ownProps.match.params.id],
+    user: state.user.uid,
   };
 }
 
-export default connect(mapStateToProps, {
-  getNotes,
-  saveNote,
-  deleteNote,
-  getUser,
-})(App);
+export default connect(mapStateToProps, { editNote })(NoteEdit);
