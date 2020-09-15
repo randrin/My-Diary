@@ -56,13 +56,13 @@ class App extends PureComponent {
   renderNotes() {
     return _.map(this.props.notes, (note, key) => {
       return (
-        <NoteCard key={key}>
-          <Link to={`/${key}`}>
-            <h2>{note.title}</h2>
-          </Link>
-          <p>{note.body}</p>
+        <>
           {note.uid === this.props.user.uid && (
-            <>
+            <NoteCard key={key}>
+              <Link to={`/${key}`}>
+                <h2>{note.title}</h2>
+              </Link>
+              <p>{note.body}</p>
               <button
                 className="btn btn-danger"
                 onClick={() => this.props.deleteNote(key)}
@@ -72,9 +72,9 @@ class App extends PureComponent {
               <button className="btn btn-info">
                 <Link to={`/${key}/edit`}>Update</Link>
               </button>
-            </>
+            </NoteCard>
           )}
-        </NoteCard>
+        </>
       );
     });
   }
