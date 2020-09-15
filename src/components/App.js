@@ -80,13 +80,28 @@ class App extends PureComponent {
   }
 
   render() {
+    const imgStyle = {
+      borderRadius: "50% !important",
+      padding: "20px",
+    };
     const { title, body } = this.state;
     const isEnabled = title.length > 0 && body.length > 0;
     return (
       <>
         <div className="container my-5">
           <div className="row text-center">
-            <div className="col">
+            <div className="col-md-2">
+              <img
+                src={this.props.user.photoURL}
+                height="100px"
+                alt={this.props.user.displayName}
+                className="img img-responsive diary-user-img"
+                style={imgStyle}
+              />
+              <h4>{this.props.user.displayName}</h4>
+              <h5>{this.props.user.email}</h5>
+            </div>
+            <div className="col-md-10">
               <h2 className="text-danger font-weight-bold">My Diary</h2>
               {this.renderNotes()}
               <form onSubmit={this.handleSubmit}>

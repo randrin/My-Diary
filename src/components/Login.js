@@ -22,19 +22,17 @@ class Login extends Component {
               Login with your favourite <b>Social Network</b>
             </h1>
           </div>
-
-          <div className="col-sm-6">
+        </div>
+        <div className="row">
+          <div className="col-sm-12">
             <button
-              className="btn btn-danger btn-lg"
+              className="btn btn-danger col-sm-6"
               onClick={this.props.googleLogin}
             >
               Login with Google
             </button>
-          </div>
-          <br />
-          <div className="col-sm-6">
             <button
-              className="btn btn-success btn-lg"
+              className="btn btn-info col-sm-6"
               onClick={this.props.twitterLogin}
             >
               Login with Twitter

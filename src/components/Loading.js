@@ -3,6 +3,7 @@ import { withRouter } from "react-router-dom";
 import { connect } from "react-redux";
 import { getNotes } from "../actions/notesAction";
 import { getUser } from "../actions/userActions";
+import "../styles/loading.scss";
 
 class Loading extends Component {
   componentWillMount() {
@@ -27,8 +28,10 @@ class Loading extends Component {
       return <div>{children}</div>;
     } else {
       return (
-        <div className="text-center">
-          <h2>Loading ...</h2>
+        <div className="flex-center position-ref full-height">
+          <div className="title m-b-md">
+            <img src="/assets/loading.gif" alt="Loading..." />
+          </div>
         </div>
       );
     }
