@@ -71,6 +71,37 @@
   border-radius: 5px;
 }
 
+#diary-goToTop {
+  position: fixed;
+  bottom: 10px;
+  right: 10px;
+  cursor: pointer;
+  display: none;
+  z-index: 99;
+  border-radius: 50%;
+  width: 70px;
+  height: 70px;
+  color: white;
+  font-size: 2em;
+  background-color: #092b40;
+  box-shadow: 0 4px 20px 0 rgba(0, 0, 0, .14), 0 7px 12px -5px rgba(255, 152, 0, .46);
+
+  i {
+    top: 5px;
+    position: relative;
+  }
+
+  &:hover {
+    background-color: white;
+    color: #092b40;
+    i {
+      top: -5px;
+      position: relative;
+      transition: 0.3s;
+    }
+  }
+}
+
 .diary-user-img {
   border-radius: 50% !important;
 }
@@ -122,6 +153,7 @@
   .username {
     text-align: left;
   }
+
   button {
     width: 100%;
   }

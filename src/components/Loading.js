@@ -30,7 +30,7 @@ class Loading extends Component {
       return (
         <div className="flex-center position-ref full-height">
           <div className="title m-b-md">
-            <img src="/assets/loading.gif" alt="Loading..." />
+            <img src="/assets/img/loading.gif" alt="Loading..." />
           </div>
         </div>
       );
