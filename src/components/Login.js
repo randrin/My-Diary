@@ -1,6 +1,11 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
-import { googleLogin, twitterLogin } from "../actions/userActions";
+import { FaFacebook, FaGooglePlusG } from "react-icons/fa";
+import {
+  googleLogin,
+  twitterLogin,
+  facebookLogin,
+} from "../actions/userActions";
 
 class Login extends Component {
   componentDidMount() {
@@ -29,14 +34,22 @@ class Login extends Component {
               className="btn btn-danger col-sm-6"
               onClick={this.props.googleLogin}
             >
-              Login with Google
+              <FaGooglePlusG className="diary-social-icon" />
+              <span className="diary-social-text">Login with Google</span>
             </button>
             <button
-              className="btn btn-info col-sm-6"
+              className="btn btn-primary col-sm-6"
+              onClick={this.props.facebookLogin}
+            >
+              <FaFacebook className="diary-social-icon" />
+              <span className="diary-social-text">Login with Facebook</span>
+            </button>
+            {/* <button
+              className="btn btn-info col-sm-4"
               onClick={this.props.twitterLogin}
             >
               Login with Twitter
-            </button>
+            </button> */}
           </div>
         </div>
       </div>
@@ -50,4 +63,8 @@ function mapStateToProps(state) {
   };
 }
 
-export default connect(mapStateToProps, { googleLogin, twitterLogin })(Login);
+export default connect(mapStateToProps, {
+  googleLogin,
+  twitterLogin,
+  facebookLogin,
+})(Login);

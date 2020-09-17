@@ -1,4 +1,9 @@
-import { auth, googleProvider, twitterProvider } from "../firebase";
+import {
+  auth,
+  googleProvider,
+  twitterProvider,
+  facebookProvider,
+} from "../firebase";
 import { GET_USER, USER_STATUS } from "../actions/actionTypes";
 
 export function googleLogin() {
@@ -7,6 +12,10 @@ export function googleLogin() {
 
 export function twitterLogin() {
   return (dispatch) => auth.signInWithPopup(twitterProvider);
+}
+
+export function facebookLogin() {
+  return (dispatch) => auth.signInWithPopup(facebookProvider);
 }
 
 export function getUser() {

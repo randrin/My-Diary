@@ -53,6 +53,19 @@
   border-radius: 50% !important;
 }
 
+.diary-social-icon {
+  font-size: 25px;
+  position: relative;
+  top: 3px;
+  right: 5px;
+}
+
+.diary-social-text {
+  position: relative;
+  top: -3px;
+  font-size: 18px;
+}
+
 * {
   border-radius: 0px !important;
 }
@@ -86,5 +99,8 @@
 
   .username {
     text-align: left;
+  }
+  button {
+    width: 100%;
   }
 }
