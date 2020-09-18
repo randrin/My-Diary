@@ -1,8 +1,8 @@
-import React, { Component } from "react";
+import React, { PureComponent } from "react";
 import { connect } from "react-redux";
 import { editNote } from "../../actions/notesAction";
 
-class NoteEdit extends Component {
+class NoteEdit extends PureComponent {
   constructor(props) {
     super(props);
 

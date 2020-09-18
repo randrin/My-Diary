@@ -1,8 +1,8 @@
-import React, { Component } from "react";
+import React, { PureComponent } from "react";
 import { withRouter } from "react-router-dom";
 import { connect } from "react-redux";
 
-class Authentification extends Component {
+class Authentification extends PureComponent {
   componentDidMount() {
     const { user, userLoading } = this.props;
     if (!user && userLoading === false) {

@@ -1,11 +1,11 @@
-import React, { Component } from "react";
+import React, { PureComponent } from "react";
 import { withRouter } from "react-router-dom";
 import { connect } from "react-redux";
 import { getNotes } from "../actions/notesAction";
 import { getUser } from "../actions/userActions";
 import "../styles/loading.scss";
 
-class Loading extends Component {
+class Loading extends PureComponent {
   componentWillMount() {
     const { userLoading, notesLoading } = this.props;
     if (userLoading === undefined) {

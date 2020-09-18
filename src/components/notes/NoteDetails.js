@@ -1,11 +1,11 @@
-import React, { Component } from "react";
+import React, { PureComponent } from "react";
 import { Link } from "react-router-dom";
 import { connect } from "react-redux";
 import CommentNote from "../comments/CommentNote";
 import Comment from "../comments/Comment";
 import _ from "lodash";
 
-class NoteDetails extends Component {
+class NoteDetails extends PureComponent {
   renderComment() {
     const { note } = this.props;
     return _.map(note.comments, (comment, key) => {

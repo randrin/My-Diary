@@ -15,6 +15,7 @@ import Loading from "./components/Loading";
 import Authentification from "./components/Authentification";
 import NoteDetails from "./components/notes/NoteDetails";
 import NoteEdit from "./components/notes/NoteEdit";
+import NoteCreate from "./components/notes/NoteCreate";
 
 // Create Redux Store
 const store = createStore(
@@ -35,6 +36,7 @@ ReactDOM.render(
               <Authentification>
                 <Header />
                 <Route path="/:id" component={NoteDetails} exact={true} />
+                <Route path="/note/create" component={NoteCreate} exact={true} />
                 <Route path="/:id/edit" component={NoteEdit} exact={true} />
                 <Route path="/" component={App} exact={true} />
               </Authentification>

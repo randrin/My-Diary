@@ -1,4 +1,4 @@
-import React, { Component } from "react";
+import React, { PureComponent } from "react";
 import { connect } from "react-redux";
 import { FaFacebook, FaGooglePlusG } from "react-icons/fa";
 import {
@@ -7,7 +7,7 @@ import {
   facebookLogin,
 } from "../actions/userActions";
 
-class Login extends Component {
+class Login extends PureComponent {
   componentDidMount() {
     if (this.props.user != null) {
       this.props.history.push("/");

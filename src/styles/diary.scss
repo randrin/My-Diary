@@ -94,10 +94,22 @@
   &:hover {
     background-color: white;
     color: #092b40;
+
     i {
       top: -5px;
       position: relative;
       transition: 0.3s;
+    }
+  }
+}
+
+.diary-link {
+
+  a {
+    color: #fff;
+
+    &:hover {
+      text-decoration: none;
     }
   }
 }
