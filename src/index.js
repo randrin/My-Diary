@@ -6,6 +6,7 @@ import { createStore, applyMiddleware } from "redux";
 import { Provider } from "react-redux";
 import { composeWithDevTools } from "redux-devtools-extension";
 import rootReducer from "./reducers";
+import "react-toastify/dist/ReactToastify.min.css";
 import thunk from "redux-thunk";
 import { BrowserRouter, Switch, Route, Redirect } from "react-router-dom";
 import Login from "./components/Login";

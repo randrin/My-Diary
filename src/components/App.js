@@ -6,6 +6,8 @@ import { connect } from "react-redux";
 import { getNotes, saveNote, deleteNote } from "../actions/notesAction";
 import { getUser } from "../actions/userActions";
 import NoteCard from "./notes/NoteCard";
+import { toast } from "react-toastify";
+toast.configure();
 
 class App extends PureComponent {
   constructor(props) {
@@ -14,6 +16,7 @@ class App extends PureComponent {
     this.state = {
       title: "",
       body: "",
+      lastLoginUser: "",
     };
 
     this.handleChange = this.handleChange.bind(this);
@@ -47,10 +50,23 @@ class App extends PureComponent {
   }
 
   // Life Cycle
-  // componentDidMount() {
-  //   this.props.getNotes();
-  //   this.props.getUser();
-  // }
+  componentDidMount() {
+    //   this.props.getNotes();
+    //   this.props.getUser();
+    // Alert Welcome User
+
+    if (this.props.user.displayName) {
+      toast.info(`Welcome ${this.props.user.displayName} to your Diary.`, {
+        position: "top-right",
+        autoClose: 5000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+      });
+    }
+  }
 
   // Render notes
   renderNotes() {
@@ -85,6 +101,10 @@ class App extends PureComponent {
       padding: "20px",
     };
     const { title, body } = this.state;
+    const { photoURL, displayName, email, lastLoginAt } = this.props.user;
+    // console.log(this.props.user.lastLoginAt);
+    //let lastLoginUser = new Date(lastLoginAt * 1000).toUTCString();
+
     const isEnabled = title.length > 0 && body.length > 0;
     return (
       <>
@@ -92,14 +112,15 @@ class App extends PureComponent {
           <div className="row text-center">
             <div className="col-md-2">
               <img
-                src={this.props.user.photoURL}
+                src={photoURL}
                 height="100px"
-                alt={this.props.user.displayName}
+                alt={displayName}
                 className="img img-responsive diary-user-img"
                 style={imgStyle}
               />
-              <h4>{this.props.user.displayName}</h4>
-              <h5>{this.props.user.email}</h5>
+              <h4>{displayName}</h4>
+              <h5>{email}</h5>
+              {/* <h5>{lastLoginUser}</h5> */}
             </div>
             <div className="col-md-10">
               <h2 className="text-danger font-weight-bold">My Diary</h2>

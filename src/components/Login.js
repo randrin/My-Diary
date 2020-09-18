@@ -28,7 +28,7 @@ class Login extends Component {
             </h1>
           </div>
         </div>
-        <div className="row">
+        <div className="row mt-5">
           <div className="col-sm-12">
             <button
               className="btn btn-danger col-sm-6"
