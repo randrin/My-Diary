@@ -16,6 +16,7 @@ import Authentification from "./components/Authentification";
 import NoteDetails from "./components/notes/NoteDetails";
 import NoteEdit from "./components/notes/NoteEdit";
 import NoteCreate from "./components/notes/NoteCreate";
+import Logout from "./components/Logout";
 
 // Create Redux Store
 const store = createStore(
@@ -32,12 +33,17 @@ ReactDOM.render(
           <div>
             <Switch>
               <Route path="/login" component={Login} exact={true} />
-              <Redirect from="/logout" to="/login" />
+              <Redirect from="/login" to="/logout" />
               <Authentification>
                 <Header />
                 <Route path="/:id" component={NoteDetails} exact={true} />
-                <Route path="/note/create" component={NoteCreate} exact={true} />
+                <Route
+                  path="/note/create"
+                  component={NoteCreate}
+                  exact={true}
+                />
                 <Route path="/:id/edit" component={NoteEdit} exact={true} />
+                <Route path="/logout" component={Logout} exact={true} />
                 <Route path="/" component={App} exact={true} />
               </Authentification>
             </Switch>

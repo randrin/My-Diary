@@ -12,6 +12,7 @@
   --dark-grey-color: #363636;
   --black-color: #333030;
   --deep-black-color: #000000;
+  --green-cyprus: #092b40;
 }
 
 ::-webkit-scrollbar-thumb {
@@ -46,7 +47,7 @@
   align-items: center;
   justify-content: center;
   font-size: calc(10px + 2vmin);
-  color: white;
+  color: var(--white-color);
 }
 
 .App-link {
@@ -64,8 +65,8 @@
 }
 
 .diary-noteDetails-body {
-  background: #092b40;
-  color: white;
+  background: var(--green-cyprus);
+  color: var(--white-color);
   padding: 10px;
   font-size: 18px;
   border-radius: 5px;
@@ -81,9 +82,9 @@
   border-radius: 50%;
   width: 70px;
   height: 70px;
-  color: white;
+  color: var(--white-color);
   font-size: 2em;
-  background-color: #092b40;
+  background-color: var(--green-cyprus);
   box-shadow: 0 4px 20px 0 rgba(0, 0, 0, .14), 0 7px 12px -5px rgba(255, 152, 0, .46);
 
   i {
@@ -92,8 +93,8 @@
   }
 
   &:hover {
-    background-color: white;
-    color: #092b40;
+    background-color: var(--white-color);
+    color: var(--green-cyprus);
 
     i {
       top: -5px;
@@ -103,10 +104,20 @@
   }
 }
 
+.diary-empty-container {
+  top: 30px;
+  position: relative;
+}
+
+.diary-font-icon {
+  font-size: 100px;
+  color: var(--green-cyprus);
+}
+
 .diary-link {
 
   a {
-    color: #fff;
+    color: var(--white-color);
 
     &:hover {
       text-decoration: none;
@@ -116,6 +127,8 @@
 
 .diary-user-img {
   border-radius: 50% !important;
+  margin: 20px 0px;
+  border: 5px solid var(--green-cyprus);
 }
 
 .diary-social-icon {
@@ -137,8 +150,8 @@
 
 .jumbotron {
   border-radius: 0px !important;
-  background-color: #092b40;
-  color: #fff;
+  background-color: var(--green-cyprus);
+  color: var(--white-color);
   font-family: 'Bowlby One', cursive;
 }
 

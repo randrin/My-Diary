@@ -8,6 +8,7 @@ import { getUser } from "../actions/userActions";
 import NoteCard from "./notes/NoteCard";
 import { toast } from "react-toastify";
 import UserProfile from "./user/UserProfile";
+import NoteEmpty from "./notes/NoteEmpty";
 toast.configure();
 
 class App extends PureComponent {
@@ -67,6 +68,8 @@ class App extends PureComponent {
 
   render() {
     const { photoURL, displayName, email, lastLoginAt } = this.props.user;
+    const { notes } = this.props;
+    console.log(notes.length);
 
     return (
       <div className="container my-5">
@@ -83,7 +86,7 @@ class App extends PureComponent {
             <h2 className="text-danger font-weight-bold">
               Welcome to your Diary
             </h2>
-            {this.renderNotes()}
+            {notes.length > 0 ? this.renderNotes() : <NoteEmpty />}
           </div>
         </div>
       </div>
