@@ -1,14 +1,12 @@
 import React, { PureComponent } from "react";
-import { Link } from "react-router-dom";
-import "../styles/diary.scss";
 import _ from "lodash";
 import { connect } from "react-redux";
-import { getNotes, deleteNote } from "../actions/notesAction";
+import { getNotes } from "../actions/notesAction";
 import { getUser } from "../actions/userActions";
-import NoteCard from "./notes/NoteCard";
 import { toast } from "react-toastify";
 import UserProfile from "./user/UserProfile";
 import NoteEmpty from "./notes/NoteEmpty";
+import NotesUser from "./notes/NotesUser";
 toast.configure();
 
 class App extends PureComponent {
@@ -16,8 +14,6 @@ class App extends PureComponent {
     super(props);
 
     this.state = {};
-
-    this.renderNotes = this.renderNotes.bind(this);
   }
 
   // Life Cycle
@@ -39,37 +35,13 @@ class App extends PureComponent {
     }
   }
 
-  // Render notes
-  renderNotes() {
-    return _.map(this.props.notes, (note, key) => {
-      return (
-        <>
-          {note.uid === this.props.user.uid && (
-            <NoteCard key={key}>
-              <Link to={`/${key}`}>
-                <h2>{note.title}</h2>
-              </Link>
-              <p>{note.body}</p>
-              <button
-                className="btn btn-danger"
-                onClick={() => this.props.deleteNote(key)}
-              >
-                Delete
-              </button>
-              <button className="btn btn-info diary-link">
-                <Link to={`/${key}/edit`}>Update</Link>
-              </button>
-            </NoteCard>
-          )}
-        </>
-      );
-    });
-  }
-
   render() {
     const { photoURL, displayName, email, lastLoginAt } = this.props.user;
-    const { notes } = this.props;
-    console.log(notes.length);
+    let notesArray = _.filter(
+      this.props.notes,
+      (note) => note.uid === this.props.user.uid
+    );
+    const notesUser = Object.values(notesArray);
 
     return (
       <div className="container my-5">
@@ -86,7 +58,7 @@ class App extends PureComponent {
             <h2 className="text-danger font-weight-bold">
               Welcome to your Diary
             </h2>
-            {notes.length > 0 ? this.renderNotes() : <NoteEmpty />}
+            {notesUser.length > 0 ? <NotesUser /> : <NoteEmpty />}
           </div>
         </div>
       </div>
@@ -103,6 +75,5 @@ function mapStateToProps(state, ownProps) {
 
 export default connect(mapStateToProps, {
   getNotes,
-  deleteNote,
   getUser,
 })(App);
